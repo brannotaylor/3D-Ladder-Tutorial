@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Ladder.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 20, 2, 20 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.12549, 0.0196078, 0.0196078, 1 )
+
+[sub_resource type="ConcavePolygonShape" id=3]
+data = PoolVector3Array( -10, 1, 10, 10, 1, 10, -10, -1, 10, 10, 1, 10, 10, -1, 10, -10, -1, 10, 10, 1, -10, -10, 1, -10, 10, -1, -10, -10, 1, -10, -10, -1, -10, 10, -1, -10, 10, 1, 10, 10, 1, -10, 10, -1, 10, 10, 1, -10, 10, -1, -10, 10, -1, 10, -10, 1, -10, -10, 1, 10, -10, -1, -10, -10, 1, 10, -10, -1, 10, -10, -1, -10, 10, 1, 10, -10, 1, 10, 10, 1, -10, -10, 1, 10, -10, 1, -10, 10, 1, -10, -10, -1, 10, 10, -1, 10, -10, -1, -10, 10, -1, 10, 10, -1, -10, -10, -1, -10 )
+
+[sub_resource type="ConcavePolygonShape" id=4]
+data = PoolVector3Array( -10, 1, 10, 10, 1, 10, -10, -1, 10, 10, 1, 10, 10, -1, 10, -10, -1, 10, 10, 1, -10, -10, 1, -10, 10, -1, -10, -10, 1, -10, -10, -1, -10, 10, -1, -10, 10, 1, 10, 10, 1, -10, 10, -1, 10, 10, 1, -10, 10, -1, -10, 10, -1, 10, -10, 1, -10, -10, 1, 10, -10, -1, -10, -10, 1, 10, -10, -1, 10, -10, -1, -10, 10, 1, 10, -10, 1, 10, 10, 1, -10, -10, 1, 10, -10, 1, -10, 10, 1, -10, -10, -1, 10, 10, -1, 10, -10, -1, -10, 10, -1, 10, 10, -1, -10, -10, -1, -10 )
+
+[node name="World" type="Spatial"]
+
+[node name="Level1" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Level1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.02291, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="Level1/MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Level1/MeshInstance/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Level1"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -7.06996, -3.7278 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="Level1/MeshInstance2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Level1/MeshInstance2/StaticBody"]
+shape = SubResource( 4 )
+
+[node name="Spatial" type="Spatial" parent="Level1"]
+
+[node name="Ladder" parent="Level1/Spatial" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.6571 )
+
+[node name="Ladder2" parent="Level1/Spatial" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2.6571 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
